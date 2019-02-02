@@ -1,0 +1,12 @@
+extends ../layout.pug
+
+block content
+    section
+        div
+            img(src=productImageURL, alt=name)
+        div
+            h1=name
+            p=description
+            h3=price
+            span=category
+    a(href="/products/"+_id+"/edit") Editar

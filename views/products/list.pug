@@ -1,0 +1,26 @@
+extends ../layout.pug
+
+block content
+
+    form(action="" method="POST")
+        input(type="text" name="name")
+        select(name="category")
+
+            option(value="") no filter
+            option(value="chidos") chidos
+            option(value="mas chidos") mas chidos
+            option(value="super chidos") super chidos
+        input(type="submit" value="Search")
+
+    each item in products
+        -var productId=item._id
+        div
+            a(href="/products/detail/"+productId) 
+                img(src=item.productImageURL,style="width:100px; margin:10px", alt="")
+
+            form(action="/products/"+productId+"/delete" method="POST")
+                input(type="submit" value="Eliminar")
+
+            form(action="/cart/add/", method="POST")
+                input(type="hidden",name="productId", value=productId)
+                input(type="submit", value="add +1")
